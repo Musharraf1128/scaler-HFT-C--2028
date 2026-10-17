@@ -35,6 +35,27 @@ The raw files are under `results/current_machine/`. The exact totals move around
 the laptop is busy, but the shape did not: once the book gets big enough to pressure
 the tiny cache, C pulls away and B's cancel path becomes painful.
 
+## screenshot proof
+
+These are screenshots from the actual terminal runs. The raw text files in `results/`
+are the source of truth if any number is hard to read here.
+
+correctness check:
+
+![all three implementations pass the 1M-op verification](evidence/01-verify.png)
+
+five-run benchmark medians:
+
+![A, B and C benchmark output](evidence/02-benchmarks-medians.png)
+
+perf run for BookC:
+
+![perf stat output for BookC](evidence/03_perf_c.png)
+
+sparse-level failure case and bitmap follow-up:
+
+![BookC sparse scan versus bitmap experiment](evidence/04_sparse_bitmap_experiment.png)
+
 ## interface changes
 - prices are **integer ticks** (100.01 -> 10001) instead of `double`. `Level{int tick; long qty}`, `BBO{... int bid_tick ...}`. bench prints them back as `99.99`.
 - `add_order(id, side, tick, qty)`: out of range tick, `qty <= 0` or an already used id is silently ignored.
